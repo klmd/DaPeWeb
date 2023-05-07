@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33620.401
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaPeWeb", "DaPeWeb.csproj", "{DE8E09C0-A711-4999-AFCC-744C9ADD7474}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DaPeWeb", "DaPeWeb.csproj", "{DE8E09C0-A711-4999-AFCC-744C9ADD7474}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaPe.DataAccess", "..\DaPe.DataAccess\DaPe.DataAccess.csproj", "{C528B3A0-A133-4A0B-B534-CD8FB65B5624}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaPe.Models", "..\DaPe.Models\DaPe.Models.csproj", "{DB21C860-FCCD-4973-925E-31C2A6CF41CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaPe.Utility", "..\DaPe.Utility\DaPe.Utility.csproj", "{BF72ECE0-768D-4F20-AB16-603054371CEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{DE8E09C0-A711-4999-AFCC-744C9ADD7474}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE8E09C0-A711-4999-AFCC-744C9ADD7474}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE8E09C0-A711-4999-AFCC-744C9ADD7474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C528B3A0-A133-4A0B-B534-CD8FB65B5624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C528B3A0-A133-4A0B-B534-CD8FB65B5624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C528B3A0-A133-4A0B-B534-CD8FB65B5624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C528B3A0-A133-4A0B-B534-CD8FB65B5624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB21C860-FCCD-4973-925E-31C2A6CF41CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB21C860-FCCD-4973-925E-31C2A6CF41CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB21C860-FCCD-4973-925E-31C2A6CF41CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB21C860-FCCD-4973-925E-31C2A6CF41CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF72ECE0-768D-4F20-AB16-603054371CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF72ECE0-768D-4F20-AB16-603054371CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF72ECE0-768D-4F20-AB16-603054371CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF72ECE0-768D-4F20-AB16-603054371CEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

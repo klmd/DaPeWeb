@@ -1,0 +1,47 @@
+﻿@model Category
+
+<div class="class shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="col-12 text-center">
+            <h2 class="text-white py-2">Editace kategorie</h2>
+        </div>
+    </div>
+</div>
+<div class="card-body p-4">
+    <form method="post">
+        <input asp-for="Id" hidden />
+        <div class="border pb-3">
+            @*<div asp-validation-summary="ModelOnly"></div>*@
+            <div class="form-floating py-2 col-12">
+                <input asp-for="Name" class="form-control border-0 shadow" />
+                <label asp-for="Name" class="ms-2"></label>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating py-2 col-12">
+                <input asp-for="DisplayCategoryNr" class="form-control border-0 shadow" />
+                <label asp-for="DisplayCategoryNr" class="ms-2"></label>
+                <span asp-validation-for="DisplayCategoryNr" class="text-danger"></span>
+            </div>
+
+            <div class="row pt-2 text-center">
+                <div class="col-6 col-mb-3">
+                    <button type="submit" class="btn btn btn-primary form-control" style="width: 50%">Aktualizuj kategorii</button>
+                </div>
+                <div class="col-6 col-mb-3">
+                    <a asp-controller="Category" asp-action="index" class="btn btn-outline-info form-control" style="width: 50%">Zpět</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+@section Scripts
+    {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+        ;
+    }
+}
