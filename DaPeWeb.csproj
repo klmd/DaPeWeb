@@ -20,4 +20,8 @@
     <ProjectReference Include="..\DaPe.DataAccess\DaPe.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>

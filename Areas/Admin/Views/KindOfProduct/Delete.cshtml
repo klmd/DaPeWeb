@@ -1,0 +1,35 @@
+﻿@model KindOfProduct
+
+<div class="class shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="col-12 text-center">
+            <h2 class="text-white py-2">Editace kategorie</h2>
+        </div>
+    </div>
+</div>
+<div class="card-body p-4">
+    <form method="post">
+        <input asp-for="Id" hidden />
+        <div class="border pb-3">
+
+            <div class="form-floating py-2 col-12">
+                <input asp-for="TypeOfProduct" disabled class="form-control border-0 shadow" />
+                <label asp-for="TypeOfProduct" class="ms-2"></label>
+            </div>
+
+            <div class="form-floating py-2 col-12">
+                <input asp-for="DisplayTypeOfProductNr" disabled class="form-control border-0 shadow" />
+                <label asp-for="DisplayTypeOfProductNr" class="ms-2"></label>
+            </div>
+
+            <div class="row pt-2 text-center">
+                <div class="col-6 col-mb-3">
+                    <button type="submit" class="btn btn btn-danger form-control" style="width: 50%">Smaž typ měřáku</button>
+                </div>
+                <div class="col-6 col-mb-3">
+                    <a asp-controller="KindOfProduct" asp-action="index" class="btn btn-outline-info form-control" style="width: 50%">Zpět</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

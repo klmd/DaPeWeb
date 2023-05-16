@@ -1,38 +1,39 @@
-﻿using DaPe.DataAccess.Data;
+﻿using DaPe.DataAccess.Repository;
 using DaPe.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DaPeWeb.Controllers
+namespace DaPeWeb.Areas.Admin.Controllers
 {
-    public class CategoryController : Controller
+    [Area("Admin")]
+    public class ProductController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
-        { 
-            _db = db;
+        private readonly IUnitOfWork _unitOfWork;
+        public ProductController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Categories.ToList();
-            return View(objCategoryList);
+            List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+            return View(objProductList);
         }
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Category obj)
+        public IActionResult Create(Product obj)
         {
-            if (obj.Name != null && obj.Name.ToLower() == obj.DisplayCategoryNr.ToString().ToLower())
+            if (obj.NameOfProduct != null && obj.NameOfProduct.ToLower() == obj.DisplayProductNr.ToString().ToLower())
             {
-                ModelState.AddModelError("name", "Číslo kategorie nemůže být stejné jak jméno kategorie");
+                ModelState.AddModelError("name", "Číslo productu nemůže být stejné jak jméno produktu");
             }
 
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
-                TempData["success"] = "Kategorie byla úspěšně vytvořena";
+                _unitOfWork.Product.Add(obj);
+                _unitOfWork.Save();
+                TempData["success"] = "Produkt byl úspěšně vytvořen";
                 return RedirectToAction("Index");
             }
             return View();
@@ -43,24 +44,24 @@ namespace DaPeWeb.Controllers
             {
                 return NotFound();
             }
-            Category categoryFromDb = _db.Categories.FirstOrDefault(c => c.Id == id);
+            Product productFromDb = _unitOfWork.Product.Get(c => c.Id == id);
             // níže stejné vyjádření téhož
             //Category categoryFromDb = _db.Categories.Where(c => c.Id == id).FirstOrDefault();
             //Category categoryFromDb = _db.Categories.Find(id);
-            if (categoryFromDb == null)
+            if (productFromDb == null)
             {
                 return NotFound();
             }
-            return View(categoryFromDb);
+            return View(productFromDb);
         }
         [HttpPost]
-        public IActionResult Edit(Category obj)
+        public IActionResult Edit(Product obj)
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
-                TempData["success"] = "Kategorie byla úspěšně editována";
+                _unitOfWork.Product.Update(obj);
+                _unitOfWork.Save();
+                TempData["success"] = "Produkt byl úspěšně editován";
                 return RedirectToAction("Index");
             }
             return View();
@@ -71,27 +72,27 @@ namespace DaPeWeb.Controllers
             {
                 return NotFound();
             }
-            Category categoryFromDb = _db.Categories.FirstOrDefault(c => c.Id == id);
+            Product productFromDb = _unitOfWork.Product.Get(c => c.Id == id);
             // níže stejné vyjádření téhož
             //Category categoryFromDb = _db.Categories.Where(c => c.Id == id).FirstOrDefault();
             //Category categoryFromDb = _db.Categories.Find(id);
-            if (categoryFromDb == null)
+            if (productFromDb == null)
             {
                 return NotFound();
             }
-            return View(categoryFromDb);
+            return View(productFromDb);
         }
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePost(int? id)
         {
-            Category? obj = _db.Categories.FirstOrDefault(obj => obj.Id == id);
-            if(obj == null)
+            Product? obj = _unitOfWork.Product.Get(obj => obj.Id == id);
+            if (obj == null)
             {
                 return NotFound();
             }
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
-            TempData["success"] = "Kategorie byla úspěšně smazána";
+            _unitOfWork.Product.Remove(obj);
+            _unitOfWork.Save();
+            TempData["success"] = "Produkt byl úspěšně smazán";
             return RedirectToAction("Index");
         }
     }

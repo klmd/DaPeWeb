@@ -1,0 +1,44 @@
+﻿@model KindOfProduct
+
+<div class="class shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="col-12 text-center">
+            <h2 class="text-white py-2">Nový typ měřáku</h2>
+        </div>
+    </div>
+</div>
+
+<div class="card-body p-4">
+    <form method="post" class="row">
+
+        <div class="border pb-3">
+            @*<div asp-validation-summary="ModelOnly"></div>*@
+            <div class="form-floating py-2 col-12">
+                <input asp-for="TypeOfProduct" class="form-control border-0 shadow">
+                <label asp-for="TypeOfProduct" class="ms-2"></label>
+                <span asp-validation-for="TypeOfProduct" class="text-danger"></span>
+            </div>
+            <div class="form-floating py-2 col-12">
+                <input asp-for="DisplayTypeOfProductNr" class="form-control border-0 shadow">
+                <label asp-for="DisplayTypeOfProductNr" class="ms-2"></label>
+                <span asp-validation-for="DisplayTypeOfProductNr" class="text-danger"></span>
+            </div>
+
+            <div class="row pt-2 text-center">
+                <div class="col-6 col-mb-3">
+                    <button type="submit" class="btn btn btn-primary form-control" style="width: 50%">Vytvoř typ měřáku</button>
+                </div>
+                <div class="col-6 col-mb-3">
+                    <a asp-controller="KindOfProduct" asp-action="Index" class="btn btn-outline-info form-control" style="width: 50%">Zpět</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts
+{
+    @{
+        <partial name = "_ValidationScriptsPartial"/>;
+    }
+}
