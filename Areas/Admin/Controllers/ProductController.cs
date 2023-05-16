@@ -1,6 +1,7 @@
 ﻿using DaPe.DataAccess.Repository;
 using DaPe.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DaPeWeb.Areas.Admin.Controllers
 {
@@ -19,7 +20,19 @@ namespace DaPeWeb.Areas.Admin.Controllers
         }
         public IActionResult Create()
         {
-            return View();
+        IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+        {
+            Text = u.Name,
+            Value = u.Id.ToString()
+        });
+        IEnumerable<SelectListItem> KindOfProductList = _unitOfWork.TypeOfProduct.GetAll().Select(u => new SelectListItem
+        {
+            Text = u.TypeOfProduct,
+            Value = u.Id.ToString()
+        });
+        ViewBag.CategoryList = CategoryList;
+        ViewBag.KindOfProductList = KindOfProductList;
+        return View();
         }
         [HttpPost]
         public IActionResult Create(Product obj)

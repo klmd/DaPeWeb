@@ -8,7 +8,7 @@
     </div>
 </div>
 
-<div class="card-body p-4">
+<div class="card-body my-4">
     <div class="row pt-3">
         <div class="col-12 text-end">
             <a asp-controller="Product" asp-action="Create" class="btn btn-primary"><i class="bi bi-journal-plus p-2"></i>Nový produkt</a>
@@ -23,6 +23,8 @@
             <th>
                 Číslo měřáku
             </th>
+            <th>Kategorie měřidla</th> @*bude doplněno*@
+            <th>Typ měřidla</th> @*bude doplněno*@
             <th>
                  Popis měřáku        
             </th>
@@ -34,6 +36,8 @@
             <tr>
                 <td class="text-start">@obj.NameOfProduct</td>
                 <td>@obj.DisplayProductNr</td>
+                <td>@obj.CategoryId</td> @*bude doplněno*@
+                <td>@obj.KindOfProductId</td> @*bude doplněno*@
                 <td>@obj.Description</td>
                 <td class="text-end">
                     <div class="w-75 btn-group" role="group">
