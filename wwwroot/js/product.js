@@ -19,7 +19,7 @@ function loadDataTable() {
                     <a class="btn btn-danger mx-2"> <i class="bi bi-trash">Smaž</i></a>                    
                     </div>`
                 },
-                "width": "20%" /*poznámka*/
+                "width": "20%"
             }
         ]
     });
