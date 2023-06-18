@@ -57,7 +57,7 @@ namespace DaPeWeb.Areas.Admin.Controllers
         {
             if (productVm.Product.NameOfProduct != null && productVm.Product.NameOfProduct.ToLower() == productVm.Product.DisplayProductNr.ToString().ToLower())
             {
-                ModelState.AddModelError("name", "Číslo productu nemůže být stejné jak jméno produktu");
+                ModelState.AddModelError("name", "Číslo produktu nemůže být stejné jak jméno produktu");
             }
 
             if (ModelState.IsValid)
@@ -76,27 +76,26 @@ namespace DaPeWeb.Areas.Admin.Controllers
                             System.IO.File.Delete(oldImagePath);
                         }
                     }
-
                     using (var fileStream = new FileStream(Path.Combine(productPath,fileName),FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
-
                     productVm.Product.ImageUrl = @"\images\product\" + fileName;
-                    if (productVm.Product.Id == null)
-                    {
-                        _unitOfWork.Product.Add(productVm.Product);
-                    }
-                    else
-                    {
-                        _unitOfWork.Product.Update(productVm.Product);
-                    }
+                }
+
+                if (productVm.Product.Id != 0) //toto zkontrolovat proto to asi neupdejtuje musí být 0 ne null
+                {
+                    _unitOfWork.Product.Update(productVm.Product);
+                }
+                else
+                {
+                    _unitOfWork.Product.Add(productVm.Product);
                 }
                 _unitOfWork.Save();
-                TempData["success"] = "Produkt byl úspěšně vytvořen";
+                TempData["success"] = "Produkt byl úspěšně vytvořen/aktualizován";
                 return RedirectToAction("Index");
             }
-            else
+            else //tady je asi někde chyba při updatu
             {
                 productVm.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
                 {
@@ -112,69 +111,7 @@ namespace DaPeWeb.Areas.Admin.Controllers
                 return View(productVm);
             }
         }
-        //edit is not needed is part of upsert
-        //public IActionResult Edit(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    Product productFromDb = _unitOfWork.Product.Get(c => c.Id == id);
-        //    // níže stejné vyjádření téhož
-        //    //Category categoryFromDb = _db.Categories.Where(c => c.Id == id).FirstOrDefault();
-        //    //Category categoryFromDb = _db.Categories.Find(id);
-        //    if (productFromDb == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(productFromDb);
-        //}
-        //[HttpPost]
-        //public IActionResult Edit(Product obj)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _unitOfWork.Product.Update(obj);
-        //        _unitOfWork.Save();
-        //        TempData["success"] = "Produkt byl úspěšně editován";
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View();
-        //}
-
-        // nahrazeno akcí v api calls
-
-        //public IActionResult Delete(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    Product productFromDb = _unitOfWork.Product.Get(c => c.Id == id);
-        //    // níže stejné vyjádření téhož
-        //    //Category categoryFromDb = _db.Categories.Where(c => c.Id == id).FirstOrDefault();
-        //    //Category categoryFromDb = _db.Categories.Find(id);
-        //    if (productFromDb == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(productFromDb);
-        //}
-
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePost(int? id)
-        {
-            Product? obj = _unitOfWork.Product.Get(obj => obj.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _unitOfWork.Product.Remove(obj);
-            _unitOfWork.Save();
-            TempData["success"] = "Produkt byl úspěšně smazán";
-            return RedirectToAction("Index");
-        }
-
+        
         #region API CALLS
 
         [HttpGet]
@@ -185,24 +122,24 @@ namespace DaPeWeb.Areas.Admin.Controllers
             return Json(new {data = objProductList});
         }
 
-        
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            var productToBeDeleted = _unitOfWork.Product.Get(u=>u.Id==id);
+            var productToBeDeleted = _unitOfWork.Product.Get(u => u.Id == id);
             if (productToBeDeleted == null)
             {
                 return Json(new { success = false, message = "Chyba při mazání" });
             }
 
-            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToBeDeleted.ImageUrl.TrimStart('\\'));
+            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productToBeDeleted.ImageUrl.TrimStart('\\')); //tady mi to hází nějakou vyjímku když product neobsahuje obrázek => ošetřit případ není - li obrázek 
             if (System.IO.File.Exists(oldImagePath))
             {
                 System.IO.File.Delete(oldImagePath);
             }
-            
+
             _unitOfWork.Product.Remove(productToBeDeleted);
             _unitOfWork.Save();
-            
+
             return Json(new { succes = true, message = "Produkt vymazán" });
         }
 

@@ -1,12 +1,21 @@
 using DaPe.DataAccess.Data;
 using DaPe.DataAccess.Repository;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+/*
+
+mySQL - Doladit
+
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    mysqlOptions => { mysqlOptions.ServerVersion(new Version(8, 0, 26), ServerType.MySql); }
+));
+*/
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
