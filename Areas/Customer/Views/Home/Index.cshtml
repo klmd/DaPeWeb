@@ -10,11 +10,27 @@
                         <img src="@product.ImageUrl" class="card-img-top rounded" />
                         <div class="card-body pb-0">
                             <div class="pl-1">
-                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.NameOfProduct</p>
-                                <p class="card-title text-warning text-center">@product.DisplayProductNr</p>
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">
+                                    @product.NameOfProduct
+                                </p>
+                                <p class="card-title text-warning text-center">
+                                    <b>@product.DisplayProductNr</b>
+                                </p>
                                 <p class="card-title text-warning text-center">@product.Category.Name</p>
                             </div>
+                            <div class="pl-1">
+                                <p class="text-decoration-underline text-opacity-75 text-center">
+                                    Datum posledního odečtu - dodělat
+                                </p>
+                            </div><div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center">
+                                    <span>Posledního odečet - dodělat</span>
+                                </p>
+                            </div>
                         </div>
+                    </div>
+                    <div>
+                        <a asp-action="Details" asp-route-productId="@product.Id" class="btn btn-primary bg-gradient border-0 form-control">Details</a>
                     </div>
                 </div>
             </div>

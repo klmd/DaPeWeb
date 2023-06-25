@@ -16,7 +16,7 @@ function loadDataTable() {
                 data: 'id',
                 "render": function (data) {
                     return `<div class="w-75 btn-group" role="group">
-                    <a href="/admin/product/upsert?id=${data}" class="btn btn-primary mx-2"> <i class="bi bi-pen-fill"></i>Edituj</a>
+                    <a href="/admin/product/upsert?id=${data}" class="btn btn-outline-primary mx-2"> <i class="bi bi-pen-fill"></i>Edituj</a>
                     <a onClick=Delete('/admin/product/delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash"></i>Smaž</a>
                      </div>`
                 },
@@ -40,11 +40,11 @@ function Delete(url) {
             $.ajax({
                 url: url,
                 type: 'DELETE',
-                success: function (data) {
+                success: function(data) {
                     dataTable.ajax.reload();
                     toaster.SUCCESS(data.message);
                 }
-            })
+            });
         }
-    })
+    });
 }

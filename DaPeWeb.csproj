@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\product\" />
-    <None Include="node_modules/**" />
   </ItemGroup>
 
 </Project>
