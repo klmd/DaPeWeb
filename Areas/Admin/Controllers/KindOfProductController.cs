@@ -1,10 +1,14 @@
 ﻿using DaPe.DataAccess.Repository;
 using DaPe.Models;
+using DaPe.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace DaPeWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
     public class KindOfProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
