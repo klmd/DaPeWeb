@@ -1,0 +1,90 @@
+﻿@model Company
+
+<div class="class shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="col-12 text-center">
+            <h2 class="text-white py-2">@(Model.Id != 0 ? "Aktualizovat společnost" : "Nová společnost - zadání")</h2>
+        </div>
+    </div>
+</div>
+
+<div class="card-body my-4">
+    <form method="post" class="row" enctype="multipart/form-data">
+        <input asp-for="Id" hidden />
+        <div class="row">
+            <div class="col-12">
+                <div class="border pb-3">
+                    @*<div asp-validation-summary="ModelOnly"></div>*@
+                    <div class="form-floating py-2 col-12">
+                        <input asp-for="CompanyName" class="form-control border-0 shadow">
+                        <label asp-for="CompanyName" class="ms-2"></label>
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating py-2 col-12">
+                        <input asp-for="Phone" class="form-control border-0 shadow">
+                        <label asp-for="Phone" class="ms-2"></label>
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating py-2 col-12">
+                        <input asp-for="StreetAddress" class="form-control border-0 shadow">
+                        <label asp-for="StreetAddress" class="ms-2"></label>
+                        <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating py-2 col-12">
+                        <input asp-for="City" class="form-control border-0 shadow">
+                        <label asp-for="City" class="ms-2"></label>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="py-2 col-12">
+                        <label asp-for="State" class="ms-2 text-muted"></label>
+                        <textarea asp-for="State" class="form-control border-0 shadow"></textarea>
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+                    <div class="py-2 col-12">
+                        <label asp-for="PostalCode" class="ms-2 text-muted"></label>
+                        <textarea asp-for="PostalCode" class="form-control border-0 shadow"></textarea>
+                        <span asp-validation-for="PostalCode" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="row pt-2 text-center mb-5">
+                        <div class="col-6 col-mb-3">
+                            @if (Model.Id != 0)
+                            {
+                                <button type="submit" class="btn btn btn-primary form-control" style="width: 50%">Aktualizuj Společnost</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn btn-primary form-control" style="width: 50%">Vytvoř Společnost</button>
+                            }
+                        </div>
+                        <div class="col-6 col-mb-3">
+                            <a asp-controller="Company" asp-action="Index" class="btn btn-outline-info form-control" style="width: 50%">Zpět</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            // plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ]
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+        ;
+    }
+}
