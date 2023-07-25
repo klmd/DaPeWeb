@@ -5,11 +5,11 @@ VisualStudioVersion = 17.6.33620.401
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DaPeWeb", "DaPeWeb.csproj", "{DE8E09C0-A711-4999-AFCC-744C9ADD7474}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaPe.DataAccess", "..\DaPe.DataAccess\DaPe.DataAccess.csproj", "{C528B3A0-A133-4A0B-B534-CD8FB65B5624}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DaPe.DataAccess", "..\DaPe.DataAccess\DaPe.DataAccess.csproj", "{C528B3A0-A133-4A0B-B534-CD8FB65B5624}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaPe.Models", "..\DaPe.Models\DaPe.Models.csproj", "{DB21C860-FCCD-4973-925E-31C2A6CF41CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DaPe.Models", "..\DaPe.Models\DaPe.Models.csproj", "{DB21C860-FCCD-4973-925E-31C2A6CF41CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaPe.Utility", "..\DaPe.Utility\DaPe.Utility.csproj", "{BF72ECE0-768D-4F20-AB16-603054371CEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DaPe.Utility", "..\DaPe.Utility\DaPe.Utility.csproj", "{BF72ECE0-768D-4F20-AB16-603054371CEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
